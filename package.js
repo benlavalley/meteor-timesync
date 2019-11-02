@@ -1,40 +1,40 @@
 Package.describe({
-  name: "mizzao:timesync",
-  summary: "NTP-style time synchronization between server and client",
-  version: "0.5.1",
-  git: "https://github.com/mizzao/meteor-timesync.git"
+	name: 'mizzao:timesync',
+	summary: 'NTP-style time synchronization between server and client',
+	version: '0.5.2',
+	git: 'https://github.com/mizzao/meteor-timesync.git',
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.2.0.1");
+	api.versionsFrom('1.8.1');
 
-  api.use([
-    'check',
-    'tracker',
-    'http'
-  ], 'client');
+	api.use([
+		'check',
+		'tracker',
+		'http',
+	], 'client');
 
-  api.use('webapp', 'server');
+	api.use('webapp', 'server');
 
-  api.use('ecmascript');
+	api.use('ecmascript');
 
-  // Our files
-  api.addFiles('timesync-server.js', 'server');
-  api.addFiles('timesync-client.js', 'client');
+	// Our files
+	api.addFiles('timesync-server.js', 'server');
+	api.addFiles('timesync-client.js', 'client');
 
-  api.export('TimeSync', 'client');
-  api.export('SyncInternals', 'client', {testOnly: true} );
+	api.export('TimeSync', 'client');
+	api.export('SyncInternals', 'client', { testOnly: true });
 });
 
 Package.onTest(function (api) {
-  api.use([
-    'tinytest',
-    'test-helpers'
-  ]);
+	api.use([
+		'tinytest',
+		'test-helpers',
+	]);
 
-  api.use(["tracker", "underscore"], 'client');
+	api.use(['tracker', 'underscore'], 'client');
 
-  api.use("mizzao:timesync");
+	api.use('mizzao:timesync');
 
-  api.addFiles('tests/client.js', 'client');
+	api.addFiles('tests/client.js', 'client');
 });
